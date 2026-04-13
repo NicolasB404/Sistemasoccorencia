@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ocorrência Positiva</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Arial:wght@400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0c2d5e, #1e4a8c);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 780px;
+            background: white;
+            border: 8px solid #0c2d5e;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .header {
+            background-color: #0c2d5e;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logos img {
+            height: 55px;
+            background: white;
+            padding: 5px;
+            border-radius: 4px;
+        }
+
+        .title {
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .form-area {
+            padding: 30px;
+        }
+
+        .row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .field {
+            flex: 1;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #0c2d5e;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #0c2d5e;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .motivo-container {
+            margin: 25px 0;
+        }
+
+        .motivo-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            background: #f0f0f0;
+            padding: 12px;
+            border: 2px solid #0c2d5e;
+            border-radius: 4px;
+        }
+
+        .options {
+            display: none;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 15px;
+            padding: 15px;
+            border: 2px solid #0c2d5e;
+            border-radius: 4px;
+            background: #fafafa;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            padding: 8px 12px;
+            border: 2px solid #0c2d5e;
+            border-radius: 4px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .option:hover {
+            background: #e6f0ff;
+        }
+
+        .option input[type="checkbox"] {
+            width: 22px;
+            height: 22px;
+            accent-color: #0c2d5e;
+            cursor: pointer;
+        }
+
+        .btn-enviar {
+            width: 100%;
+            padding: 15px;
+            background-color: #0c2d5e;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 25px 0 10px 0;
+        }
+
+        .btn-enviar:hover {
+            background-color: #1e4a8c;
+        }
+
+        .footer {
+            background: #0c2d5e;
+            padding: 15px;
+            text-align: left;
+        }
+
+        .btn-voltar {
+            background: #0c2d5e;
+            color: white;
+            border: 2px solid white;
+            padding: 10px 25px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        /* Mensagem de Sucesso */
+        .success-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .success-content {
+            background: white;
+            padding: 40px 50px;
+            border-radius: 10px;
+            text-align: center;
+            border: 6px solid #0c2d5e;
+            max-width: 400px;
+        }
+
+        .success-content h2 {
+            color: #0c2d5e;
+            margin-bottom: 15px;
+        }
+
+        .success-content p {
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logos">
+                <img src="https://i.ibb.co/yHXJtCK/Adobe-Express-file.png">
+                <img src="https://i.ibb.co/ycvr6Kc2/brasao-cpmpr270.png">
+            </div>
+            <div class="title">Ocorrência Postiva</div>
+        </div>
+
+        <!-- Form -->
+        <div class="form-area">
+            <div class="row">
+                <div class="field">
+                    <label>Nome do estudante</label>
+                    <input type="text" id="nome" placeholder="Digite o nome completo" required>
+                </div>
+                <div class="field">
+                    <label>CGM</label>
+                    <input type="text" id="cgm" placeholder="Número CGM" required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="field">
+                    <label>Série/turma</label>
+                    <input type="text" id="turma" placeholder="Ex: 8º Ano A" required>
+                </div>
+                <div class="field">
+                    <label>Disciplina</label>
+                    <input type="text" id="disciplina" placeholder="Ex: Matemática">
+                </div>
+            </div>
+
+            <!-- Motivo da Ocorrência -->
+            <div class="motivo-container">
+                <label>Motivo da ocorrência</label>
+                <div class="motivo-header" onclick="toggleOptions()">
+                    <strong>Clique para selecionar os motivos</strong>
+                    <span style="margin-left:auto; font-size:20px;">▼</span>
+                </div>
+
+                <div class="options" id="options">
+                   <div class="option"><input type="checkbox"> Excelente comportamento</div>
+                    <div class="option"><input type="checkbox"> Bom desempenho acadêmico</div>
+                    <div class="option"><input type="checkbox"> Ajuda aos colegas</div>
+                    <div class="option"><input type="checkbox"> Participação ativa em aula</div>
+                    <div class="option"><input type="checkbox"> Responsabilidade e compromisso</div>
+                    <div class="option"><input type="checkbox"> Trabalho em equipe</div>
+                    <div class="option"><input type="checkbox"> Criatividade e inovação</div>
+                    <div class="option"><input type="checkbox"> Melhora significativa</div>
+                    <div class="option"><input type="checkbox"> Liderança positiva</div>
+                    <div class="option"><input type="checkbox"> Respeito e gentileza</div>
+                    <div class="option"><input type="checkbox"> Pontualidade</div>
+                    <div class="option"><input type="checkbox"> Organização</div>
+                    <div class="option"><input type="checkbox"> Dedicação aos estudos</div>
+                    <div class="option"><input type="checkbox"> Atitude positiva</div>
+                    <div class="option"><input type="checkbox"> Outros</div>
+                </div>
+            </div>
+
+            <label>Anotações da Ocorrência</label>
+            <textarea id="anotacoes" class="anotacoes" placeholder="Descreva detalhadamente a ocorrência..."
+                rows="6"></textarea>
+
+            <button onclick="enviarOcorrencia()" class="btn-enviar">ENVIAR OCORRÊNCIA</button>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <button class="btn-voltar" onclick="window.history.back()">
+                ← Voltar
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal de Sucesso -->
+    <div class="success-modal" id="successModal">
+        <div class="success-content">
+            <h2>✅ Ocorrência Enviada!</h2>
+            <p>A ocorrência foi registrada com sucesso.</p>
+            <button onclick="fecharModal()"
+                style="padding:12px 30px; background:#0c2d5e; color:white; border:none; border-radius:4px; font-size:16px; cursor:pointer;">
+                Fechar
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function toggleOptions() {
+            const options = document.getElementById('options');
+            options.style.display = options.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        function enviarOcorrencia() {
+            const nome = document.getElementById('nome').value.trim();
+            if (!nome) {
+                alert("Por favor, preencha o nome do estudante.");
+                return;
+            }
+
+            // Mostra a mensagem de sucesso
+            document.getElementById('successModal').style.display = 'flex';
+        }
+
+        function fecharModal() {
+            document.getElementById('successModal').style.display = 'none';
+            // Opcional: limpar o formulário após envio
+            // document.querySelector('form').reset();
+        }
+    </script>
+</body>
+
+</html>
