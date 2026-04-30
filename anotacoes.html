@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anotações</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Arial:wght@400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0c2d5e, #1e4a8c);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 780px;
+            background: white;
+            border: 8px solid #0c2d5e;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .header {
+            background-color: #0c2d5e;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logos img {
+            height: 55px;
+            background: white;
+            padding: 5px;
+            border-radius: 4px;
+        }
+
+        .title {
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .form-area {
+            padding: 30px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #0c2d5e;
+        }
+
+        .anotacoes {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #0c2d5e;
+            border-radius: 4px;
+            font-size: 16px;
+            font-family: Arial, sans-serif;
+            resize: vertical;
+            min-height: 380px;
+        }
+
+        .btn-enviar {
+            width: 100%;
+            padding: 15px;
+            background-color: #0c2d5e;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 25px 0 10px 0;
+        }
+
+        .btn-enviar:hover {
+            background-color: #1e4a8c;
+        }
+
+        .footer {
+            background: #0c2d5e;
+            padding: 15px;
+            text-align: left;
+        }
+
+        .btn-voltar {
+            background: #0c2d5e;
+            color: white;
+            border: 2px solid white;
+            padding: 10px 25px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .success-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .success-content {
+            background: white;
+            padding: 40px 50px;
+            border-radius: 10px;
+            text-align: center;
+            border: 6px solid #0c2d5e;
+            max-width: 400px;
+        }
+
+        .success-content h2 {
+            color: #0c2d5e;
+            margin-bottom: 15px;
+        }
+
+        .success-content p {
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logos">
+                <img src="https://i.ibb.co/yHXJtCK/Adobe-Express-file.png">
+                <img src="https://i.ibb.co/ycvr6Kc2/brasao-cpmpr270.png">
+            </div>
+            <div class="title">Anotações</div>
+        </div>
+
+        <div class="form-area">
+            <label>Anotações Gerais</label>
+            <textarea id="anotacoes" class="anotacoes" 
+                placeholder="Escreva aqui suas anotações, observações ou registro detalhado..."></textarea>
+
+            <button onclick="enviarAnotacao()" class="btn-enviar">SALVAR ANOTAÇÃO</button>
+        </div>
+
+        <div class="footer">
+            <button class="btn-voltar" onclick="window.history.back()">
+                ← Voltar
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal de Sucesso -->
+    <div class="success-modal" id="successModal">
+        <div class="success-content">
+            <h2>✅ Anotação Salva!</h2>
+            <p>A anotação foi registrada com sucesso.</p>
+            <button onclick="fecharModal()" 
+                style="padding:12px 30px; background:#0c2d5e; color:white; border:none; border-radius:4px; font-size:16px; cursor:pointer;">
+                Fechar
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function enviarAnotacao() {
+            const anotacoes = document.getElementById('anotacoes').value.trim();
+            
+            if (!anotacoes) {
+                alert("Por favor, escreva alguma anotação antes de salvar.");
+                return;
+            }
+
+            // Aqui você pode adicionar lógica futura para enviar os dados
+            document.getElementById('successModal').style.display = 'flex';
+        }
+
+        function fecharModal() {
+            document.getElementById('successModal').style.display = 'none';
+            // Opcional: limpar o campo após salvar
+            // document.getElementById('anotacoes').value = '';
+        }
+    </script>
+</body>
+
+</html>
